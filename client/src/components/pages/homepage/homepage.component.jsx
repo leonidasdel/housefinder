@@ -3,8 +3,13 @@ import "./homepage.styles.scss"
 import {useSelector,useDispatch} from 'react-redux'
 import * as action from '../../redux/actions';
 
-// initialize places
-var places = window.places = window.places ? window.places : {}
+// initialize google maps
+const google = window.google = window.google ? window.google : {} 
+var options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: "gb"}
+   };
+
 
 // redux actions
 // const searchTerm  =  useSelector(state => state.searchReducer)
@@ -19,28 +24,9 @@ const dispatch = useDispatch()
     
     
       useEffect(()=>{
-            var fixedOptions = {
-                appId: 'plSOVEGFQIJC',
-                apiKey: '9c3882c9bb8f2d0ef574bab66820aabc',
-                container: document.querySelector('#address_input'),
-                templates: {
-                    value: function(suggestion) {
-                      return `${suggestion.name},  ${suggestion.country} ${suggestion.administrative}`;
-                    },
-                    suggestion: function(suggestion) {
-                      return `${suggestion.name} , ${suggestion.country}` ;
-                    }}
-              };
-
-              
-              
-              var reconfigurableOptions = {
-                language: 'en', // Receives results in Greece
-                countries: ['gb'], // Search in Greece
-                type: 'city', // Search only for cities names
-                aroundLatLngViaIP: false // disable the extra search/boost around the source IP
-              };
-              var placesInstance = places(fixedOptions).configure(reconfigurableOptions);})
+        let autocomplete = new google.maps.places.Autocomplete(document.getElementById('address_input'), options)});
+        // autocomplete.addListener("place_changed", handlePlaceSelect)}
+        //     )
        
         
      
@@ -59,7 +45,7 @@ const dispatch = useDispatch()
                         Εύρεση Διαμερισμάτων<span className="mainPage_search_title_span">Με ένα μόνο κλικ!</span>
                     </h1>
                     <form onSubmit={(e) => handleSubmit(e)} action="" className="mainPage_search_bar">
-                        <input   type="search" id="address_input" placeholder="Αθήνα,Θεσσαλονίκη,Πάτρα..." className="mainPage_search_bar_input" />
+                        <input   type="search" id="address_input" placeholder="Manchester, Blackpool, Liverpool..." className="mainPage_search_bar_input" />
                         <i className="fas fa-search"></i>
                     </form>
                 </section>

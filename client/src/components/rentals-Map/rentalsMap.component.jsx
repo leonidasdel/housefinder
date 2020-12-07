@@ -2,53 +2,50 @@ import React,{useEffect} from 'react';
 import {useSelector,useDispatch,shouldComponentUpdate} from 'react-redux'
 import * as action from '../redux/actions';
 
-var H = window.H = window.H ? window.H : {}
+const google = (window.google = window.google ? window.google : {});
+var geocoder;
+var map;
+var marker = [];
+var options = {
+	types: [ '(cities)' ],
+	componentRestrictions: { country: 'gr' }
+};
+
 function RentalsMap(props) {
     const searchTerm  =  useSelector(state => state.searchReducer)
     const dispatch = useDispatch()
         
+ 
+   
 
     useEffect(()=>{
-       
-            
-            var platform = new H.service.Platform({
-                'apikey': 'wZRhT3ips1BsXM2p83hd0kv8XfA1OJGaQm6Hc1QV1_k'
-              });
+        let autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
         
-       // Get the default map types from the Platform object:
-    var defaultLayers = platform.createDefaultLayers();
-         
-    // Instantiate the map:
-    var map = new H.Map(
-        document.getElementById('mapContainer'),
-        defaultLayers.vector.normal.map,
-        {
+        geocoder = new google.maps.Geocoder();
+        
+		map = new google.maps.Map(document.getElementById('mapContainer'), {
+			center: { lat: 54.3005, lng: -3.2522809 },
             zoom: 6,
-            center: { lat:  38.842242, lng:24.536632 }
-        }); 
-
-    // Create the default UI:
-    var ui = H.ui.UI.createDefault(map, defaultLayers);
-    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-    var service = platform.getSearchService();
-    window.addEventListener('resize', () => map.getViewPort().resize());
-    service.geocode({
-        q: searchTerm
-      }, (result) => {
-        // Add a marker for each location found
-
-            console.log(result)
-            var bbox = new H.geo.Rect(result.items[0].mapView.north,result.items[0].mapView.west,result.items[0].mapView.south,result.items[0].mapView.east);
-            // map.setCenter({lat:result.items[0].position.lat, lng:result.items[0].position.lng});
-            map.getViewModel().setLookAtData({
-                bounds: bbox
-              });
-
+            
+			scrollwheel: false
         });
-      
+    
+        if(searchTerm != "") geocodeLocation(searchTerm);
+}
 
-    }, [])
+        
+, [])
+
+const geocodeLocation = (searchTerm) => {
+    console.log(searchTerm)
+    geocoder.geocode({ address: searchTerm }, function(results, status) {
+        console.log(results,status)
+        if (status === 'OK'){
+            map.setCenter(results[0].geometry.location);
+            map.fitBounds(results[0].geometry.viewport);
+        }
+    })
+}
 
     
         return(
