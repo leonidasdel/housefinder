@@ -3,8 +3,13 @@ import "./homepage.styles.scss"
 import {useSelector,useDispatch} from 'react-redux'
 import * as action from '../../redux/actions';
 
-// initialize places
-var places = window.places = window.places ? window.places : {}
+// initialize google maps
+const google = window.google = window.google ? window.google : {} 
+var options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: "gb"}
+   };
+
 
 // redux actions
 // const searchTerm  =  useSelector(state => state.searchReducer)
@@ -19,29 +24,9 @@ const dispatch = useDispatch()
     
     
       useEffect(()=>{
-            var fixedOptions = {
-                appId: 'plSOVEGFQIJC',
-                apiKey: '9c3882c9bb8f2d0ef574bab66820aabc',
-                container: document.querySelector('#address_input'),
-                templates: {
-                    value: function(suggestion) {
-                        console.log(suggestion)
-                      return `${suggestion.latlng.lat},${suggestion.latlng.lng}`;
-                    },
-                    suggestion: function(suggestion) {
-                      return `${suggestion.name},${suggestion.country}` ;
-                    }}
-              };
-
-              
-              
-              var reconfigurableOptions = {
-                language: 'en', // Receives results in Greece
-                countries: ['gb'], // Search in Greece
-                type: 'city', // Search only for cities names
-                aroundLatLngViaIP: false // disable the extra search/boost around the source IP
-              };
-              var placesInstance = places(fixedOptions).configure(reconfigurableOptions);})
+        let autocomplete = new google.maps.places.Autocomplete(document.getElementById('address_input'), options)});
+        // autocomplete.addListener("place_changed", handlePlaceSelect)}
+        //     )
        
         
      
