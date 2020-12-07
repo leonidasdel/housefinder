@@ -25,10 +25,11 @@ const dispatch = useDispatch()
                 container: document.querySelector('#address_input'),
                 templates: {
                     value: function(suggestion) {
-                      return `${suggestion.name},  ${suggestion.country} ${suggestion.administrative}`;
+                        console.log(suggestion)
+                      return `${suggestion.latlng.lat},${suggestion.latlng.lng}`;
                     },
                     suggestion: function(suggestion) {
-                      return `${suggestion.name} , ${suggestion.country}` ;
+                      return `${suggestion.name},${suggestion.country}` ;
                     }}
               };
 
@@ -59,7 +60,7 @@ const dispatch = useDispatch()
                         Εύρεση Διαμερισμάτων<span className="mainPage_search_title_span">Με ένα μόνο κλικ!</span>
                     </h1>
                     <form onSubmit={(e) => handleSubmit(e)} action="" className="mainPage_search_bar">
-                        <input   type="search" id="address_input" placeholder="Αθήνα,Θεσσαλονίκη,Πάτρα..." className="mainPage_search_bar_input" />
+                        <input   type="search" id="address_input" placeholder="Manchester, Blackpool, Liverpool..." className="mainPage_search_bar_input" />
                         <i className="fas fa-search"></i>
                     </form>
                 </section>
