@@ -40,17 +40,27 @@ label{
                 left: 0;
                 height: 100%;
                 z-index:3;
-               
-                &_text{
-                    text-align: center;
-                   height: 12%;
-                    font-size: 40px;
-                    margin-top: 30px;
-                }
+                position: relative;
+                
             }
         }
     }
     
+}
+.Login {
+    width: 50%;
+}
+.login-signup{
+    text-align: center;
+    height: 12%;
+    font-size: 40px;
+    margin-top: 30px;
+}
+.form-container{
+    width: 100%;
+    position: absolute;
+    top: 40%;left: 50%;
+    transform: translate(-50%,-40%);
 }
 
 
@@ -68,7 +78,7 @@ label{
     margin: 0 auto;
     color: white;
     cursor: pointer;
-    margin-top: 17px;
+    margin-top: 25px;
 }
 .validate:focus{
     border-bottom: 1px solid #ad33d6 !important;

@@ -72,11 +72,11 @@ function LoginForm(props){
             <div id="clicky" className="container_page_form_moving-element"></div>
             <div className="container_page_form_login-signup">
                 <div id="login" className="container_page_form_login-signup_login index">
-                    <h2 className="container_page_form_login-signup_login_text">Sign in</h2>
+                    <h2 className="container_page_form_login-signup_login_text login-signup">Sign in</h2>
                     <h6 id="alertwrongpassword" className="alertwrongpassword">""</h6>
    
 
-                   <div className="tab">
+                   <div className="form-container">
                        <form onSubmit={() => login()} className="col s12">
 
 
@@ -103,7 +103,7 @@ function LoginForm(props){
                    </div>
                 <div id="signup" className="Signup">
                 <div className="Login">
-                    <h2 className="signin">Sign up</h2>
+                    <h2 className="signin login-signup">Sign up</h2>
                     
    
 
@@ -113,20 +113,26 @@ function LoginForm(props){
 
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="email" type="email" className="input-field_text" />
+                               <input id="email" type="email" className="input-field_text" placeholder="Email"/>
                                <label className="input-field_label" htmlFor="email">Email</label>
                                {/* <span class="helper-text"  data-error="✖" data-success="🗸"></span> */}
                            </div>
                        </div>
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="password" type="password" className="input-field_text" />
+                               <input id="password" type="password" className="input-field_text" placeholder="Password" />
                                <label className="input-field_label" htmlFor="password">Password</label>
                            </div>
                        </div>
                        <div className="flexible-thing">
                        <div className="input-field marginclass col s12">
-                           <input id="last_name" type="text" className="input-field_text" />
+                           <input id="first_name" type="text" className="input-field_text" placeholder="First Name"/>
+                           <label className="input-field_label" htmlFor="first_name">First Name</label>
+                       </div> 
+                       </div>
+                       <div className="flexible-thing">
+                       <div className="input-field marginclass col s12">
+                           <input id="last_name" type="text" className="input-field_text" placeholder="Last Name"/>
                            <label className="input-field_label" htmlFor="last_name">Username</label>
                        </div> 
                        </div>
