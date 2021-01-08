@@ -82,14 +82,14 @@ function LoginForm(props){
 
                        <div className="flexible-thing">
                        <div className="input-field marginclass col s12">
-                           <input id="usernamelogin" type="text" className="validate" />
-                           <label htmlFor="last_name">Username</label>
+                           <input id="email" type="text" className="input-field_text" placeholder="Email"/>
+                           <label className="input-field_label" htmlFor="email" >Email</label>
                        </div> 
                        </div>
                        <div className=" flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="passwordlogin" type="password" className="validate" />
-                               <label htmlFor="password">Password</label>
+                               <input id="password" type="password" className="input-field_text" placeholder="Password"/>
+                               <label className="input-field_label" htmlFor="password">Password</label>
                            </div>
                        </div>
                        <div className="login-button-div">
@@ -113,21 +113,21 @@ function LoginForm(props){
 
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="email" type="email" className="validate" />
-                               <label htmlFor="email">Email</label>
+                               <input id="email" type="email" className="input-field_text" />
+                               <label className="input-field_label" htmlFor="email">Email</label>
                                {/* <span class="helper-text"  data-error="✖" data-success="🗸"></span> */}
                            </div>
                        </div>
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="password" type="password" className="validate" />
-                               <label htmlFor="password">Password</label>
+                               <input id="password" type="password" className="input-field_text" />
+                               <label className="input-field_label" htmlFor="password">Password</label>
                            </div>
                        </div>
                        <div className="flexible-thing">
                        <div className="input-field marginclass col s12">
-                           <input id="last_name" type="text" className="validate" />
-                           <label htmlFor="last_name">Username</label>
+                           <input id="last_name" type="text" className="input-field_text" />
+                           <label className="input-field_label" htmlFor="last_name">Username</label>
                        </div> 
                        </div>
                        <div className="login-button-div">

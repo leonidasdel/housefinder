@@ -40,10 +40,12 @@ label{
                 left: 0;
                 height: 100%;
                 z-index:3;
+               
                 &_text{
                     text-align: center;
                    height: 12%;
                     font-size: 40px;
+                    margin-top: 30px;
                 }
             }
         }
@@ -51,9 +53,6 @@ label{
     
 }
 
-.tab {
-    height: 88%;
-}
 
 
 .index{
@@ -69,6 +68,7 @@ label{
     margin: 0 auto;
     color: white;
     cursor: pointer;
+    margin-top: 17px;
 }
 .validate:focus{
     border-bottom: 1px solid #ad33d6 !important;
@@ -92,6 +92,27 @@ label{
     padding: 0 .75rem !important;
     left: auto;
     right: auto;
+    &_label{
+        display: none;
+    }
+    &_text{
+        width: 100%;
+        border:none;
+        border-bottom: 1px solid #dfdddd;
+        margin-top: 25px;
+        height: 35px;
+        font-size: 1.5em;
+        padding: 9px 0;
+        color: #666;
+        
+    }
+    &_text:focus{
+        border:none !important;
+        border-bottom: 1px solid #e5e5e5 !important;
+        box-shadow: none;
+        outline: none;
+        
+    }
 }
 .flexible-thing{
     display: flex;
