@@ -21,4 +21,9 @@ public class HouseService {
         List<HouseEntity> houseEntity = houseRepository.getAllProperties();
         return  houseEntity;
     }
+
+    public  List<HouseEntity> getHousesByCity(String city){
+        List<HouseEntity> housesByCity = houseRepository.findByCity(city);
+        return  housesByCity;
+    }
 }

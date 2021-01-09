@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,5 +39,20 @@ public class HouseController {
 
 
             return   new ResponseEntity(houseResponseModel, HttpStatus.OK);
+        }
+
+        @GetMapping("/{city}")
+        public ResponseEntity<HouseResponseModel> getByCity(@PathVariable String city) {
+            ModelMapper modelMapper = new ModelMapper();
+            modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+            List<HouseEntity> housesByCity = houseService.getHousesByCity(city);
+
+            Type listType = new TypeToken<List<HouseResponseModel>>(){}.getType();
+            List<HouseResponseModel> houseResponseModel = modelMapper.map(housesByCity,listType);
+
+
+            return   new ResponseEntity(houseResponseModel, HttpStatus.OK);
+
         }
 }
