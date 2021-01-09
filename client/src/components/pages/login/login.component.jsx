@@ -5,8 +5,7 @@ function Login(props){
     
     return(
         <section className="login_section">
-            <LoginForm/>
-            
+            <LoginForm/> 
         </section>
       
     )
