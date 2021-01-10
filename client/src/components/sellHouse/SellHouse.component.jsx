@@ -2,6 +2,28 @@ import React,{ useEffect} from 'react';
 import "./SellHouse.styles.scss"
 
 function SellHouse(props){
+
+    const file = document.querySelector('#file');
+    let changeFile =  (e) => {
+        // Get the selected file
+        const [file] = e.target.files;
+        
+        // Get the file name and size
+        const { name: fileName, size } = file;
+        // Convert size in bytes to kilo bytes
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            document.getElementById("helper-notify").style.display ="none"
+            document.querySelector('.file-name').textContent = fileName;
+
+        }else{
+            alert("Only jpg/jpeg and png files are allowed!");
+        }   
+       
+};
+
+
     return (
     <section className="container_page_form">
         <div id="picture"></div>
@@ -68,9 +90,14 @@ function SellHouse(props){
                     </div>
                 </div>
                 <div class="file-input">
-  <input type="file" id="file" class="file" />
-  <label for="file">Select file</label>
-</div>
+                    <input type="file" id="file" class="file" accept="image/x-png,image/jpg,image/jpeg"  onChange={(e) =>changeFile(e)}/>
+                    <label for="file">
+                        Select file
+                        <p class="file-name"></p>
+                    </label>
+                     <span id="helper-notify">(Only accepts png,jpeg and jpg)</span>
+                </div>
+
 
                 
             </div>
