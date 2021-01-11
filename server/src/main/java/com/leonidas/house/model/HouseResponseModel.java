@@ -1,5 +1,7 @@
 package com.leonidas.house.model;
 
+import com.leonidas.house.data.HousesPicturesEntity;
+
 public class HouseResponseModel {
     private String firstName;
     private String lastName;
@@ -17,6 +19,17 @@ public class HouseResponseModel {
     private String price;
     private String bedrooms;
     private String bathrooms;
+    private HousesPicturesEntity houses_path;
+
+    public HousesPicturesEntity getHouses_path() {
+        return houses_path;
+    }
+
+    public void setHouses_path(HousesPicturesEntity houses_path) {
+        this.houses_path = houses_path;
+    }
+
+
 
     public String getFirstName() {
         return firstName;

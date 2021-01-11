@@ -1,14 +1,27 @@
 package com.leonidas.house.data;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="houses")
 public class HouseEntity {
 
+
+    @JsonManagedReference
+    @OneToOne(targetEntity = HousesPicturesEntity.class, mappedBy = "houseEntity", orphanRemoval = false, fetch = FetchType.LAZY)
+    private HousesPicturesEntity houses_path;
+
+
+
     @Id
     @GeneratedValue
-    private long id;
+    private long  id;
 
     @Column
     private String firstName;
@@ -192,5 +205,13 @@ public class HouseEntity {
 
     public void setBathrooms(String bathrooms) {
         this.bathrooms = bathrooms;
+    }
+
+    public HousesPicturesEntity getHouses_path() {
+        return houses_path;
+    }
+
+    public void setHouses_path(HousesPicturesEntity houses_path) {
+        this.houses_path = houses_path;
     }
 }

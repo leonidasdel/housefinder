@@ -93,7 +93,7 @@ function SellHouse(props){
                     <input type="file" id="file" class="file" accept="image/x-png,image/jpg,image/jpeg"  onChange={(e) =>changeFile(e)}/>
                     <label for="file">
                         Select file
-                        <p class="file-name"></p>
+                        <p className="file-name"></p>
                     </label>
                      <span id="helper-notify">(Only accepts png,jpeg and jpg)</span>
                 </div>
