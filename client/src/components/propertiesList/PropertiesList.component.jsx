@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import "./PropertiesList.styles.scss"
 import {useSelector,useDispatch} from 'react-redux'
 import * as action from '../redux/actions';
@@ -8,23 +8,48 @@ function PropertiesList(props) {
     const city  =  useSelector(state => state.cityReducer)
     let properties = useSelector(state => state.propertiesReducer)
     const dispatch = useDispatch()
+    const prevUser = useRef();
+    let tempcity =city
     useEffect(() => {
-        console.log(city)
-        if(city != '' ){
+        console.log(properties == [])
+        if(city != ''  ){
         axios.get(`http://localhost:8080/houses/${city}`)
             .then(res => {
                 console.log(res)
                 dispatch(action.changePropertiesText(res.data))
             })
             .catch(err => console.log(err))}
-    })
+    },[city])
     return(
         (
             <section className="properties-container">
-                <h3 className="properties-container_title">
-                    Showing {properties.length} properties in {city}
+                <div className="properties-container_title"> 
+                <h3 className="properties-container_title_text">
+                   {city!="" && `Showing ${properties.length} properties in ${city}`} 
                 </h3>
-                {properties.map(el=>  <h1>{el.firstName}</h1>)}
+                </div>
+                
+               
+                <section className="properties-container_houses">
+                    {properties.map(el=>  (
+                    <div className="properties-container_houses_box">
+                        
+                        <div className="properties-container_houses_box_img" style={{ backgroundSize:"cover",backgroundPosition:"center",backgroundImage: `url(${require("../../assets/house-pictures/"+ (el.houses_path != null ? el.houses_path.pathLocation  : "home-main.jpg"))})`  }} ></div>
+                        <div className="properties-container_houses_box_description">
+                            <div className="properties-container_houses_box_description_first">
+                                <h3 className="properties-container_houses_box_description_first_text"> {el.streetAddress}, {el.city}</h3>
+                                
+                            </div>
+                            <div className="properties-container_houses_box_description_second">
+                                <h3 className="properties-container_houses_box_description_second_text"> {el.bedrooms} BD </h3>
+                                <h3 className="properties-container_houses_box_description_second_text"> {el.bathrooms} WC </h3>
+                                <h3 className="properties-container_houses_box_description_second_text"> {el.price} €</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ))}
+                </section>
             </section>
         )
     )
