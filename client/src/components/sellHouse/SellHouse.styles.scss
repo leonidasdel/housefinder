@@ -1,0 +1,81 @@
+#picture{
+    width: 35%;
+    height: 100%;
+    background-image: url("../../assets/sellHousePhoto.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.form_sell{
+    width: 65%;
+    &_container{
+        padding: 30px 40px;
+        &_button{
+            // display: flex;
+            // justify-content: flex-end;
+            
+            &_btn{
+                border: none;
+                margin-right: 1px;
+                height: 35px;
+                width: 120px;
+                position: absolute;
+                top:0px;right: 5px;
+                cursor: pointer;
+                border-radius: 15px;
+                background-color: #5FD1E4;
+                color: white;
+                font-size: 15px;
+                font-weight: 700;
+            }
+            
+        }
+        &_row{
+            display: flex;
+            justify-content: space-between;
+            &_item{
+                width: 47%;
+            }
+        }
+    }
+}
+
+
+// styling and hiding the normal file input
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  
+  }
+  .file-input{
+    position: relative;
+  }
+
+.file-input label {
+    margin-top: 10px;
+    font-size: 16px;
+    display: block;
+    position: relative;
+    width: 120px;
+    height: 35px;
+    // border-radius: 25px;
+    background: #eeeeee;
+    border: .075rem solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    color: #7c7c7c;
+  }
+  .file-name {
+    position: absolute;
+    bottom: -35px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
