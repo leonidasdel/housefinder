@@ -68,11 +68,14 @@ function SellHouse(props){
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
+        let user = "user"
+        let password = "password"
+        let basicAuthHeader =  'Basic ' + window.btoa(user + ":" + password)
         axios({
             method: 'post',
             url: 'http://localhost:8080/put-house',
             data: formData,
-            headers: {'Content-Type': 'multipart/form-data' }
+            headers: {'Content-Type': 'multipart/form-data','Authorization': basicAuthHeader }
             })
             .then(function (response) {
                 //handle success
@@ -80,9 +83,9 @@ function SellHouse(props){
                 lat =null
                 lng= null
             })
-            .catch(function (response) {
+            .catch(function (err) {
                 //handle error
-                console.log(response);
+                console.log(err);
                 
             });
 

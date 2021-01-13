@@ -13,7 +13,12 @@ function PropertiesList(props) {
     useEffect(() => {
         console.log(properties == [])
         if(city != ''  ){
-        axios.get(`http://localhost:8080/houses/${city}`)
+            let user = "user"
+        let password = "password"
+        let basicAuthHeader =  'Basic ' + window.btoa(user + ":" + password)
+        axios.get(`http://localhost:8080/houses/${city}`,{headers:{
+            authorization:basicAuthHeader
+        }})
             .then(res => {
                 console.log(res)
                 dispatch(action.changePropertiesText(res.data))
