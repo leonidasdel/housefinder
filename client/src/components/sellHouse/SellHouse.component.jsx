@@ -1,7 +1,10 @@
 import React,{ useEffect,useState } from 'react';
 import "./SellHouse.styles.scss"
+import axios from 'axios'
 
 const google = window.google = window.google ? window.google : {} 
+let lat;
+let lng;
 var geocoder;
 var options = {
     componentRestrictions: {country: "gb"}
@@ -30,7 +33,7 @@ function SellHouse(props){
             document.querySelector('.file-name').textContent = fileName;
             console.log(e.target.files[0])
             formData = new FormData();
-            formData.append('house',e.target.files[0])
+            formData.append('file',e.target.files[0])
             console.log(formData)
 
         }else{
@@ -45,17 +48,52 @@ function SellHouse(props){
         e.preventDefault();
        
         let objData = {
-            "firsName": e.target[0].value
+            "firstName": e.target[0].value,
+            "lastName": e.target[1].value,
+            "email": e.target[2].value,
+            "phoneNumber": e.target[3].value,
+            "streetAddress": e.target[4].value,
+            "postalCode": e.target[5].value,
+            "city": e.target[6].value,
+            "country": e.target[7].value,
+            "bedrooms": e.target[8].value,
+            "bathrooms": e.target[9].value,
+            "squareMeters": e.target[10].value,
+            "price": e.target[11].value,
+            "typeOfProperty": "RENT",
+            "lat": lat,
+            "lng": lng
         }
         formData.append('objArr', JSON.stringify( objData))
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/put-house',
+            data: formData,
+            headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(function (response) {
+                //handle success
+                console.log(response);
+                lat =null
+                lng= null
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+                
+            });
+
     }
 
     const autofillAddress = (e) => {
         geocoder.geocode({ address: e.target.value }, function(results, status) {
             let possibleAddresses = results[0].address_components
+            console.log(results[0].geometry.location.lat)
+             lat = results[0].geometry.location.lat();
+             lng = results[0].geometry.location.lng();
             console.log(possibleAddresses)
             for (let i =0;i<possibleAddresses.length;i++){
                 if(possibleAddresses[i].types[0] === "postal_town"){
@@ -135,6 +173,7 @@ function SellHouse(props){
                     <div className="form_sell_container_row_item">
                     <input id="price" type="text" className="input-field_text" placeholder="Price(only numbers)"/>
                         <label className="input-field_label" htmlFor="price">Price</label>
+                        
                     </div>
                 </div>
                 
@@ -145,8 +184,10 @@ function SellHouse(props){
                         <p className="file-name"></p>
                     </label>
                      <span id="helper-notify">(Only accepts png,jpeg and jpg)</span>
+                     <div className="form_sell_container_button"> <button type="submit" className="form_sell_container_button_btn">Submit</button></div>
                 </div>
-                <button type="submit">Submit</button>
+               
+               
                 </form>
                 
             </div>

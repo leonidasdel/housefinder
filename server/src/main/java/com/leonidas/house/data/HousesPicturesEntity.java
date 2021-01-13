@@ -18,8 +18,8 @@ public class HousesPicturesEntity {
 
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HOUSE_ID", insertable = false, updatable = false)
-    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "HOUSE_ID")
+//    @Fetch(FetchMode.JOIN)
     private HouseEntity houseEntity;
 
 

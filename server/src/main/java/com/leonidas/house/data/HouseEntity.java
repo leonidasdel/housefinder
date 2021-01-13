@@ -14,7 +14,8 @@ public class HouseEntity {
 
 
     @JsonManagedReference
-    @OneToOne(targetEntity = HousesPicturesEntity.class, mappedBy = "houseEntity", orphanRemoval = false, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "houseEntity", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private HousesPicturesEntity houses_path;
 
 

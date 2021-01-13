@@ -10,6 +10,26 @@
     width: 65%;
     &_container{
         padding: 30px 40px;
+        &_button{
+            // display: flex;
+            // justify-content: flex-end;
+            
+            &_btn{
+                border: none;
+                margin-right: 1px;
+                height: 35px;
+                width: 120px;
+                position: absolute;
+                top:0px;right: 5px;
+                cursor: pointer;
+                border-radius: 15px;
+                background-color: #5FD1E4;
+                color: white;
+                font-size: 15px;
+                font-weight: 700;
+            }
+            
+        }
         &_row{
             display: flex;
             justify-content: space-between;
@@ -28,6 +48,10 @@
     width: 0.1px;
     height: 0.1px;
     position: absolute;
+  
+  }
+  .file-input{
+    position: relative;
   }
 
 .file-input label {

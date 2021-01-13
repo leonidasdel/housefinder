@@ -2,11 +2,10 @@ package com.leonidas.house.model;
 
 import com.leonidas.house.data.HousesPicturesEntity;
 
-public class HouseResponseModel {
+public class HouseRequestModel {
     private String firstName;
     private String lastName;
     private String email;
-    private String gender;
     private String country;
     private String city;
     private String streetAddress;
@@ -19,13 +18,13 @@ public class HouseResponseModel {
     private String price;
     private String bedrooms;
     private String bathrooms;
-    private HousePictureResponseModel houses_path;
+    private HousePictureRequestModel houses_path;
 
-    public HousePictureResponseModel getHouses_path() {
+    public HousePictureRequestModel getHouses_path() {
         return houses_path;
     }
 
-    public void setHouses_path(HousePictureResponseModel houses_path) {
+    public void setHouses_path(HousePictureRequestModel houses_path) {
         this.houses_path = houses_path;
     }
 
@@ -53,14 +52,6 @@ public class HouseResponseModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getCountry() {
@@ -161,11 +152,10 @@ public class HouseResponseModel {
 
     @Override
     public String toString() {
-        return "HouseResponseModel{" +
+        return "HouseRequestModel{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", streetAddress='" + streetAddress + '\'' +
