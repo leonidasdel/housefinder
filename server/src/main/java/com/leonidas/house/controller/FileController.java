@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class FileController {
 
     @Autowired
