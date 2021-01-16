@@ -75,7 +75,7 @@ function SellHouse(props){
             method: 'post',
             url: 'http://localhost:8080/put-house',
             data: formData,
-            headers: {'Content-Type': 'multipart/form-data','Authorization': basicAuthHeader }
+            headers: {'Content-Type': 'multipart/form-data','Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZWxsaW9sYW4xOTk5QGdtYWlsLmNvbSIsImV4cCI6MTYxMTYxNzAwOX0.7IQN7fDBSOPSbdR4CmczXJaEe6aOXbbNN2MGQm2mjuiTTSlakHUUUzPswTQt5rmym-loc97B0iPvLgdtD0yN6Q" }
             })
             .then(function (response) {
                 //handle success

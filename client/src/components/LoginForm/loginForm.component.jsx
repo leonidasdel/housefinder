@@ -1,5 +1,6 @@
 import React,{ useEffect} from 'react';
 import "./loginForm.styles.scss"
+import axios from 'axios'
 
 function LoginForm(props){
 
@@ -27,19 +28,26 @@ function LoginForm(props){
     // http request gia syndesh enos xrhsth
 
     const login = (e) => {
+        console.log("hi")
         e.preventDefault()
-        // return MyApiClient.post('login', {username:document.getElementById("usernamelogin").value,password:document.getElementById("passwordlogin").value})
-        //     .then(res => {
-        //         if(res.data !==""){
-                    
-        //             window.location= "/"
-        //         }
-        //         else{
-        //             alert("Wrong combination of username and password")
-        //         }
-        //     } )
+      
+        let tempEmail = document.getElementById("email").value
+        let tempPassword = document.getElementById("password").value
+        const json = JSON.stringify({ email: tempEmail,password:tempPassword });
+        console.log(json)
+        let basicAuthHeader =  'Basic ' + window.btoa(tempEmail + ":" + tempPassword)
+       
+        return axios.post('http://localhost:8080/users/login',  json,{headers:{
+           
+            "Content-Type": "application/json"
+        }})
+        
+        .then(response => response)
+        .then(response => {
+           console.log(response.headers);
+        })
             
-        //     .catch(err => console.log(err))
+            .catch(err => console.log(err))
 
         }
 
@@ -77,7 +85,7 @@ function LoginForm(props){
    
 
                    <div className="form-container">
-                       <form onSubmit={() => login()} className="col s12">
+                       <form onSubmit={(e) => login(e)} className="col s12">
 
 
                        <div className="flexible-thing">
