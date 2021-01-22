@@ -48,3 +48,54 @@ export const deletePropertiesText = () => {
         type:'INCREMENT'
     }
 }
+
+export const changeBedroomsText = (e) => {
+    return{
+        type:'CHANGE_BEDROOMS',
+        payload: e
+    }
+}
+export const getBedroomsText = () => {
+    return{
+        type:'GET_BEDROOMS'
+    }
+}
+export const deleteBedroomsText = () => {
+    return{
+        type:'INCREMENT'
+    }
+}
+
+export const changeBathroomsText = (e) => {
+    return{
+        type:'CHANGE_BATHROOMS',
+        payload: e
+    }
+}
+export const getBathroomsText = () => {
+    return{
+        type:'GET_BATHROOMS'
+    }
+}
+export const deleteBathroomsText = () => {
+    return{
+        type:'INCREMENT'
+    }
+}
+
+export const changeSortText = (e) => {
+    return{
+        type:'CHANGE_SORT',
+        payload: e
+    }
+}
+export const getSortText = () => {
+    return{
+        type:'GET_SORT'
+    }
+}
+export const deleteSortText = () => {
+    return{
+        type:'INCREMENT'
+    }
+}

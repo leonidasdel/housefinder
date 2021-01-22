@@ -10,7 +10,7 @@ import {Provider} from 'react-redux'
 import allReducers from './components/redux/reducers'
 import Login from './components/pages/login/login.component';
 import houseSubmit from './components/pages/houseSubmit/houseSubmit.component';
-
+import AuthenticatedRoute from './components/services/AuthenticatedRoute'
 
 const store = createStore(allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -30,8 +30,8 @@ constructor(props){
     <Switch>
         <Route exact path='/' props={this.props} component={HomePage} />
         <Route exact path="/houses" props={this.props} component={Properties}/>
-        <Route exact path="/login-register" props={this.props} component={Login}/>
-        <Route exact path="/sell-house" props={this.props} component={houseSubmit}/>
+        <Route exact path="/login-register" history={this.props.history} props={this.props} component={Login}/>
+        <AuthenticatedRoute  exact path="/sell-house" props={this.props} component={houseSubmit}/>
     </Switch>
     </BrowserRouter>
     </Provider>

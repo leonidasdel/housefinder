@@ -58,4 +58,16 @@ public class UserDto {
     public void setEncryptedPassword(String encryptedPassword) {
         this.encryptedPassword = encryptedPassword;
     }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", userId='" + userId + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                '}';
+    }
 }

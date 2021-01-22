@@ -48,6 +48,8 @@ http.csrf().disable();
         http.authorizeRequests().
                 antMatchers("/houses/**").permitAll().
                 antMatchers("/users/**").permitAll().
+                antMatchers("/static/**").permitAll().
+                antMatchers("/").permitAll().
                 antMatchers(HttpMethod.OPTIONS,"**").permitAll().
                 anyRequest().authenticated().and()
 

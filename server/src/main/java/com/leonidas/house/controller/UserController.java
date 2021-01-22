@@ -31,6 +31,7 @@ public class UserController {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = modelMapper.map(user,UserDto.class);
+        System.out.println(userDto.toString());
             UserDto   userDetails  =   userService.createUser(userDto);
 
         return new ResponseEntity(userDetails,HttpStatus.OK);

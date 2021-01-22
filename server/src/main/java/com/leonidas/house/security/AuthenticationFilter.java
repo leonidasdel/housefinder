@@ -82,7 +82,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
         res.addHeader("token", token);
         res.addHeader("userId", userDetails.getUserId());
-        res.addHeader("Access-Control-Allow-Origin", "*");
+//        res.addHeader("Access-Control-Allow-Origin", "*");
+        res.addHeader("expires", String.valueOf(EXPIRATION_TIME));
+        res.addHeader("username", userName);
+        res.addHeader("firstName", userDetails.getFirstName());
+        res.addHeader("lastName", userDetails.getLastName());
     }
 
 
