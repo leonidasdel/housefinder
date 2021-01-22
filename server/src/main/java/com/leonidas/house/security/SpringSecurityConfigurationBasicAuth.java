@@ -49,6 +49,8 @@ http.csrf().disable();
                 antMatchers("/houses/**").permitAll().
                 antMatchers("/users/**").permitAll().
                 antMatchers("/static/**").permitAll().
+                antMatchers("/manifest.json").permitAll().
+                antMatchers("/favicon.ico").permitAll().
                 antMatchers("/").permitAll().
                 antMatchers(HttpMethod.OPTIONS,"**").permitAll().
                 anyRequest().authenticated().and()
