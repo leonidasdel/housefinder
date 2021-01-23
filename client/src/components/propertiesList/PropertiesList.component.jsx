@@ -242,7 +242,7 @@ function PropertiesList(props) {
                     {properties.map(el=>  (
                     <div className="properties-container_houses_box">
                         
-                        <div className="properties-container_houses_box_img" style={{ backgroundSize:"cover",backgroundPosition:"center",backgroundImage: `url(${require("../../assets/house-pictures/"+ (el.houses_path != null ? el.houses_path.pathLocation  : "home-main.jpg"))})`  }} ></div>
+                        <div className="properties-container_houses_box_img" style={{ backgroundSize:"cover",backgroundPosition:"center",backgroundImage: `url(${require("./static/"+ (el.houses_path != null ? el.houses_path.pathLocation  : "home-main.jpg"))})`  }} ></div>
                         <div className="properties-container_houses_box_description">
                             <div className="properties-container_houses_box_description_first">
                                 <h3 className="properties-container_houses_box_description_first_text"> {el.streetAddress}, {el.city}</h3>

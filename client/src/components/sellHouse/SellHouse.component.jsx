@@ -1,6 +1,7 @@
 import React,{ useEffect,useState } from 'react';
 import "./SellHouse.styles.scss"
 import axios from 'axios'
+import request from '../services/request'
 import { BASE_URL } from '../../Constants'
 
 const google = window.google = window.google ? window.google : {} 
@@ -75,7 +76,7 @@ function SellHouse(props){
             console.log(key[0] + ', ' + key[1]);
         }
        
-        axios({
+        request({
             method: 'post',
             url: `${BASE_URL}/put-house`,
             data: formData,
@@ -87,7 +88,7 @@ function SellHouse(props){
                 lat =null
                 lng= null
             })
-            .then(res => window.location = "http://locahost:3000")
+            .then(res => window.location = window.location.origin)
             .catch(function (err) {
                 //handle error
                 console.log(err);
