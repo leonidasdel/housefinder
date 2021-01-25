@@ -1,6 +1,8 @@
 import React,{ useEffect,useState } from 'react';
 import "./SellHouse.styles.scss"
 import axios from 'axios'
+import request from '../services/request'
+import { BASE_URL } from '../../Constants'
 
 const google = window.google = window.google ? window.google : {} 
 let lat;
@@ -10,7 +12,12 @@ var options = {
     componentRestrictions: {country: "gb"}
    };
 var formData;
+
 function SellHouse(props){
+
+    const email = sessionStorage.getItem("authenticatedUser")
+    const firstName = sessionStorage.getItem("firstName")
+    const lastName = sessionStorage.getItem("lastName")
 
     useEffect(()=> {
         let autocomplete = new google.maps.places.Autocomplete(document.getElementById('street_address'), options);
@@ -68,14 +75,12 @@ function SellHouse(props){
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        let user = "user"
-        let password = "password"
-        let basicAuthHeader =  'Basic ' + window.btoa(user + ":" + password)
-        axios({
+       
+        request({
             method: 'post',
-            url: 'http://localhost:8080/put-house',
+            url: `${BASE_URL}/put-house`,
             data: formData,
-            headers: {'Content-Type': 'multipart/form-data','Authorization': basicAuthHeader }
+            headers: {'Content-Type': 'multipart/form-data'}
             })
             .then(function (response) {
                 //handle success
@@ -83,6 +88,7 @@ function SellHouse(props){
                 lat =null
                 lng= null
             })
+            .then(res => window.location = window.location.origin)
             .catch(function (err) {
                 //handle error
                 console.log(err);
@@ -93,6 +99,7 @@ function SellHouse(props){
 
     const autofillAddress = (e) => {
         geocoder.geocode({ address: e.target.value }, function(results, status) {
+            if(results[0] != null){
             let possibleAddresses = results[0].address_components
             console.log(results[0].geometry.location.lat)
              lat = results[0].geometry.location.lat();
@@ -109,6 +116,8 @@ function SellHouse(props){
                     document.getElementById("postal_code").value = possibleAddresses[i].long_name
                 }
             }
+            }
+            
         })
     }
 
@@ -120,17 +129,17 @@ function SellHouse(props){
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="form_sell_container_row">
                     <div className="form_sell_container_row_item">
-                    <input id="first_name" type="text" className="input-field_text" placeholder="First Name"  />
-                        <label className="input-field_label" htmlFor="first_name">First Name</label>
+                    <input id="first_name" type="text" className="input-field_text"  defaultValue={firstName} placeholder="First Name"  />
+                        <label className="input-field_label"  htmlFor="first_name">First Name</label>
                     </div>
                     <div className="form_sell_container_row_item">
-                    <input id="last_name" type="text" className="input-field_text" placeholder="Last Name"/>
+                    <input id="last_name" type="text" className="input-field_text" defaultValue={lastName}  placeholder="Last Name"/>
                         <label className="input-field_label" htmlFor="last_name">Last Name</label>
                     </div>
                 </div>
                 <div className="form_sell_container_row">
                     <div className="form_sell_container_row_item">
-                    <input id="email" type="text" className="input-field_text" placeholder="Email"/>
+                    <input id="email" type="text" className="input-field_text" defaultValue={email} placeholder="Email"/>
                         <label className="input-field_label" htmlFor="email">Email</label>
                     </div>
                     <div className="form_sell_container_row_item">

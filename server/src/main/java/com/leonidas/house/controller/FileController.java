@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class FileController {
 
     @Autowired
@@ -28,7 +30,7 @@ public class FileController {
 
     @PostMapping(value = "/put-house",
             consumes = {"multipart/form-data"})
-    public String upload(@RequestParam MultipartFile file, @RequestParam String objArr) throws JsonProcessingException {
+    public String upload(@RequestParam MultipartFile file, @RequestParam String objArr) throws IOException {
         HouseRequestModel newHouse = new ObjectMapper().readValue(objArr, HouseRequestModel.class);
         System.out.println(newHouse.toString());
         UUID uuid = UUID.randomUUID();

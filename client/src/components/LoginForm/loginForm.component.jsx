@@ -1,8 +1,21 @@
-import React,{ useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import "./loginForm.styles.scss"
+import axios from 'axios'
+import AuthenticationService from '../services/AuthenticationService';
+import { withRouter } from "react-router-dom";
+import { BASE_URL } from '../../Constants'
 
 function LoginForm(props){
-
+    
+    const [flagWrongLogin,setFlagWrongLogin] = useState(false)
+    const [flagLoggedIn,setflagLoggedIn] = useState(true)
+    
+    useEffect(() => {
+        if(props.location.state){
+            setflagLoggedIn(false)}
+        
+        
+    },[])
 
     //  animation gia to login kai register
     const movelement = (e) => {
@@ -27,47 +40,77 @@ function LoginForm(props){
     // http request gia syndesh enos xrhsth
 
     const login = (e) => {
+        console.log("hi")
         e.preventDefault()
-        // return MyApiClient.post('login', {username:document.getElementById("usernamelogin").value,password:document.getElementById("passwordlogin").value})
-        //     .then(res => {
-        //         if(res.data !==""){
-                    
-        //             window.location= "/"
-        //         }
-        //         else{
-        //             alert("Wrong combination of username and password")
-        //         }
-        //     } )
+      
+        let tempEmail = document.getElementById("email").value
+        let tempPassword = document.getElementById("password").value
+        const json = JSON.stringify({ email: tempEmail,password:tempPassword });
+        
+       
+        return axios.post(`${BASE_URL}/users/login`,  json,{headers:{
+           
+            "Content-Type": "application/json"
+        }})
+        
+        .then(response => response)
+        .then(response => {
+            console.log(response.headers)
+            AuthenticationService.registerSuccessfulLoginForJwt(response.headers.username,response.headers.token,response.headers.firstname,response.headers.lastname)
+           
+        })
+        .then(response => {
+            console.log("hi")
+            window.location = window.location.origin;
+        })
             
-        //     .catch(err => console.log(err))
+            .catch(err => 
+                {console.log("hi")
+                setFlagWrongLogin(true)}
+                )
 
         }
 
-     const hello = (e) => {
+
+    const register = (e) => {
         e.preventDefault()
-       let username = document.getElementById("last_name").value
-       let password = document.getElementById("password").value
-        // return MyApiClient.post('register', {name:username,password:password,password2:password,username:username,email:document.getElementById("email").value})
-        // .then(res => {
-        //     if(res.data !==""){
-        //         MyApiClient.post('login', {username:username,password:password})
-        //         .then(() =>  window.location= "/" )
-               
-        //     }
-        //     else{
-        //         alert("Wrong combination of username and password")
-        //     }
-        // } )
+        let tempEmail = document.getElementById("email-register").value
+        let tempPassword = document.getElementById("password-register").value
+        let tempFirstName = document.getElementById("first_name").value
+        let tempLastName = document.getElementById("last_name").value
+        const json = JSON.stringify({ email: tempEmail,password:tempPassword, firstName: tempFirstName,lastName: tempLastName });
+        console.log(json)
+        return axios.post(`${BASE_URL}/users`, json,{headers:{
+           
+            "Content-Type": "application/json"}
+        })
+        .then(response => response)
+        .then(response => {
+           console.log(response,response.headers);
+          
+        })
+            
+            .catch(err => console.log(err))
+
+        }
         
-        // .catch(err => console.log(err))
-         
-    }
+
+
+
 
     
     return(
        
             
         <section className="container_page">
+            { !flagLoggedIn && <div className="alert">
+                
+                <h5 className="alert_text">You need to be logged in to access this link</h5>
+                <span className="closebtn" onClick={(e) => {
+                    document.getElementsByClassName("alert")[0].style.opacity ='0'
+                    setTimeout(() => {  document.getElementsByClassName("alert")[0].style.display = "none"; },600)
+                 } } >&times;</span>
+            </div>   }
         <section className="container_page_form">
             <div id="clicky" className="container_page_form_moving-element"></div>
             <div className="container_page_form_login-signup">
@@ -77,7 +120,7 @@ function LoginForm(props){
    
 
                    <div className="form-container">
-                       <form onSubmit={() => login()} className="col s12">
+                       <form onSubmit={(e) => login(e)} className="col s12">
 
 
                        <div className="flexible-thing">
@@ -96,6 +139,7 @@ function LoginForm(props){
                    <button type="submit"  id="signinbutton" className="login-button">Sign In</button>
                         </div>
                        </form>
+                        { flagWrongLogin &&  <h3 className="error-helper">Wrong username and/or password!</h3>}
                    </div>
 
 
@@ -108,19 +152,19 @@ function LoginForm(props){
    
 
                    <div className="">
-                       <form className="col s12">
+                       <form className="col s12" onSubmit={(e) => register(e)}>
 
 
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="email" type="email" className="input-field_text" placeholder="Email"/>
-                               <label className="input-field_label" htmlFor="email">Email</label>
+                               <input id="email-register" type="email" className="input-field_text" placeholder="Email"/>
+                               <label className="input-field_label" htmlFor="email-register">Email</label>
                                {/* <span class="helper-text"  data-error="✖" data-success="🗸"></span> */}
                            </div>
                        </div>
                        <div className="flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="password" type="password" className="input-field_text" placeholder="Password" />
+                               <input id="password-register" type="password" className="input-field_text" placeholder="Password" />
                                <label className="input-field_label" htmlFor="password">Password</label>
                            </div>
                        </div>
@@ -137,7 +181,7 @@ function LoginForm(props){
                        </div> 
                        </div>
                        <div className="login-button-div">
-                   <button type="submit" onClick={() => hello()} id="signupbutton" className="login-button">Sign up</button>
+                   <button type="submit"  id="signupbutton" className="login-button">Sign up</button>
                    </div>
                        </form>
                    </div>
@@ -167,4 +211,4 @@ function LoginForm(props){
       
     )
 }
-export default LoginForm;
+export default withRouter(LoginForm);

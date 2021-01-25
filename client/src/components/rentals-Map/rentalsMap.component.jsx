@@ -4,11 +4,13 @@ import * as action from '../redux/actions';
 import axios from "axios"
 import icon from '../../assets/icons8-home-32.png';
 
+
 const google = (window.google = window.google ? window.google : {});
 var geocoder;
 var map;
 var marker = [];
 let tempMarker;
+var infowindow = new google.maps.InfoWindow();
 
 
 var options = {
@@ -31,18 +33,19 @@ function RentalsMap(props) {
 		map = new google.maps.Map(document.getElementById('mapContainer'), {
 			center: { lat: 54.3005, lng: -3.2522809 },
             zoom: 6,
+            scrollwheel: false
             
-			scrollwheel: false
         });
     
         if(searchTerm != "") geocodeLocation(searchTerm);
 }, [])
 
+
 useEffect(() => {
 
-    for (let i = 0; i < marker.length; i++) {
-        marker[i].setMap(null);
-      }
+
+    marker = [];
+   
     
     for (let i = 0; i < markers.length; i++) {  
         console.log(i)
@@ -51,8 +54,17 @@ useEffect(() => {
           map: map,
           icon: icon
         })
-        marker.push(tempMarker)
-        ;
+            
+           
+         
+            marker.push(tempMarker)
+            google.maps.event.addListener(marker[i], 'click', function () {
+                infowindow.setContent(markers[i].streetAddress)
+                infowindow.open(map, marker[i]);
+            });
+        
+            
+        
 
 }},[markers])
 
