@@ -9,6 +9,7 @@ function LoginForm(props){
     
     const [flagWrongLogin,setFlagWrongLogin] = useState(false)
     const [flagLoggedIn,setflagLoggedIn] = useState(true)
+    const [flagSuccessRegister,setFlagSuccessRegister] = useState(false)
     
     useEffect(() => {
         if(props.location.state){
@@ -87,7 +88,7 @@ function LoginForm(props){
         .then(response => response)
         .then(response => {
            console.log(response,response.headers);
-          
+           setFlagSuccessRegister(true)
         })
             
             .catch(err => console.log(err))
@@ -139,9 +140,17 @@ function LoginForm(props){
                    <button type="submit"  id="signinbutton" className="login-button">Sign In</button>
                         </div>
                        </form>
-                        { flagWrongLogin &&  <h3 className="error-helper">Wrong username and/or password!</h3>}
+                        
                    </div>
-
+                   { flagWrongLogin &&  
+                        <div className="alert" id="wrong-creds">
+                
+                        <h5 className="alert_text"  >Wrong email and/or password</h5>
+                        <span className="closebtn" onClick={(e) => {
+                            document.getElementById("wrong-creds").style.opacity ='0'
+                            setTimeout(() => {  document.getElementById("wrong-creds").style.display = "none"; },600)
+                         } } >&times;</span>
+                    </div> }
 
 
                    </div>
@@ -184,6 +193,15 @@ function LoginForm(props){
                    <button type="submit"  id="signupbutton" className="login-button">Sign up</button>
                    </div>
                        </form>
+                       { flagSuccessRegister &&  
+                        <div className="alert" id="success-register">
+                
+                        <h5 className="alert_text"  >Registration successful! You can now login.</h5>
+                        <span className="closebtn" onClick={(e) => {
+                            document.getElementById("success-register").style.opacity ='0'
+                            setTimeout(() => {  document.getElementById("success-register").style.display = "none"; },600)
+                         } } >&times;</span>
+                    </div> }
                    </div>
                    </div>
                 </div>
@@ -202,8 +220,9 @@ function LoginForm(props){
                     <div className="login-button-div">
                        <button onClick={()=>movelementtwo(  )}   className="signup-button mrg-bg">Sign in</button>
                 </div>
+               
                 </div>
-            
+               
             </div>
         </section>
     </section>

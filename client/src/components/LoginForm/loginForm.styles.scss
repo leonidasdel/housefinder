@@ -403,10 +403,10 @@ button:focus{
     display: flex;
     align-items: center;
     transition: 1s;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%,0);
+    // position: absolute;
+    // top: 0;
+    // left: 50%;
+    // transform: translate(-50%,0);
     width: 100%;
     & span {
         font-size: 25px;
@@ -434,3 +434,13 @@ button:focus{
   .closebtn:hover {
     color: black;
   } 
+  #wrong-creds{
+       position: absolute;
+       top: 17px;
+  }
+  #success-register{
+    background-color: #47da23;
+    position: absolute;
+    width: 50%;
+       top: 17px;
+  }
