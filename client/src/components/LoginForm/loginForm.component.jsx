@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import "./loginForm.styles.scss"
 import axios from 'axios'
 import AuthenticationService from '../services/AuthenticationService';
@@ -8,7 +8,14 @@ import { BASE_URL } from '../../Constants'
 function LoginForm(props){
     
     const [flagWrongLogin,setFlagWrongLogin] = useState(false)
+    const [flagLoggedIn,setflagLoggedIn] = useState(true)
     
+    useEffect(() => {
+        if(props.location.state){
+            setflagLoggedIn(false)}
+        
+        
+    },[])
 
     //  animation gia to login kai register
     const movelement = (e) => {
@@ -96,6 +103,14 @@ function LoginForm(props){
        
             
         <section className="container_page">
+            { !flagLoggedIn && <div className="alert">
+                
+                <h5 className="alert_text">You need to be logged in to access this link</h5>
+                <span className="closebtn" onClick={(e) => {
+                    document.getElementsByClassName("alert")[0].style.opacity ='0'
+                    setTimeout(() => {  document.getElementsByClassName("alert")[0].style.display = "none"; },600)
+                 } } >&times;</span>
+            </div>   }
         <section className="container_page_form">
             <div id="clicky" className="container_page_form_moving-element"></div>
             <div className="container_page_form_login-signup">

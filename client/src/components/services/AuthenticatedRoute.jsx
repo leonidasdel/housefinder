@@ -7,7 +7,7 @@ class AuthenticatedRoute extends Component {
         if (AuthenticationService.isUserLoggedIn()) {
             return <Route {...this.props} />
         } else {
-            return <Redirect to="/login-register" />
+            return <Redirect   to={{pathname:"/login-register",state:{isNotLoggedIn:true}}} />
         }
 
     }
