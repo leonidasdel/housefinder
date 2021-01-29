@@ -51,6 +51,7 @@ http.csrf().disable();
                 antMatchers("/static/**").permitAll().
                 antMatchers("/manifest.json").permitAll().
                 antMatchers("/favicon.ico").permitAll().
+                antMatchers("/login-register").permitAll().
                 antMatchers("/").permitAll().
                 antMatchers(HttpMethod.OPTIONS,"**").permitAll().
                 anyRequest().authenticated().and()

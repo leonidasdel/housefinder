@@ -35,6 +35,7 @@ public class FileController {
         System.out.println(newHouse.toString());
         UUID uuid = UUID.randomUUID();
         var fullName = storageService.uploadFile(file,uuid);
+        file.getInputStream().close();
 //        var fileName = file.getName();
 //        var fileExtension = FilenameUtils.getExtension(fileName);
 //        var fullName = uuid.toString() + fileExtension;

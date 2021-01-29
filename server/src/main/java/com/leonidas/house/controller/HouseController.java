@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -26,7 +27,7 @@ public class HouseController {
             this.houseService = houseService;
         }
 // CHANGE HOUSE ENTITYT TO HOUSE RESPONSE MODEL
-        @GetMapping
+        @GetMapping("/all")
         public ResponseEntity<HouseResponseModel> getAll() {
             ModelMapper modelMapper = new ModelMapper();
             modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -37,6 +38,13 @@ public class HouseController {
 
 
             return   new ResponseEntity(houseResponseModel, HttpStatus.OK);
+        }
+
+        @GetMapping
+        public ModelAndView getHouses(){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("index.html");
+            return modelAndView;
         }
 
         @GetMapping("/{city}")
