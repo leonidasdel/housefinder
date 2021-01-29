@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -41,7 +42,7 @@ public class StorageService {
 
             String key = FOLDER + uuid + "." + fileExtension;
             saveImageToServer(file, key);
-
+            file.getInputStream().close();
 
             return uuid + "." + fileExtension;
 
@@ -55,5 +56,7 @@ public class StorageService {
         }
         s3Client.putObject(new PutObjectRequest(doSpaceBucket, key, multipartFile.getInputStream(), metadata)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
+
+
     }
 }
