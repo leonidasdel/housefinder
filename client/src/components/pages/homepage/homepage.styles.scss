@@ -1,6 +1,5 @@
 .mainPage{
     height: calc(100vh - 80px);
-    // overflow: hidden;
     width: 100%;
     background: linear-gradient(84deg,rgba(0,0,0,.2),rgba(0,0,0,.2) 50%),url(../../../assets/home-main.jpg) !important;
     background-size: cover !important;
@@ -54,6 +53,7 @@
     }  
 }
 
+// font awesome
 .fa-search{
     color: rgba(31, 29, 29, 0.829);
     font-size: 18px;
@@ -63,16 +63,4 @@
     right: 3%;
     transform: translate(-3%,-50%);
     cursor: pointer;
-}
-.ap-input, .ap-hint {
-    width: inherit;
-                height: 58px;
-                font-size: 1.8em;
-                padding: 5px 10px;
-                font-size: 1.9em;
-                border: none;
-}
-.ap-address,.ap-name,
-.ap-dataset-places{
-    font-size: 14px !important;
 }
