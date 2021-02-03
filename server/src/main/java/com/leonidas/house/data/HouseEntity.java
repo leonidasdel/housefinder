@@ -17,9 +17,6 @@ public class HouseEntity {
     @OneToOne(mappedBy = "houseEntity", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private HousesPicturesEntity houses_path;
-
-
-
     @Id
     @GeneratedValue
     private long  id;

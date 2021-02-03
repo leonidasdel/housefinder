@@ -27,6 +27,7 @@ public class HouseService {
 
     public List<HouseEntity> getHouses(){
         List<HouseEntity> houseEntity = houseRepository.getAllProperties();
+
         return  houseEntity;
     }
 

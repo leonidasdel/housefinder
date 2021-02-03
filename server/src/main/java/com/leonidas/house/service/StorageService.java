@@ -57,6 +57,7 @@ public class StorageService {
         s3Client.putObject(new PutObjectRequest(doSpaceBucket, key, multipartFile.getInputStream(), metadata)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
 
+        multipartFile.getInputStream().close();
 
     }
 }
