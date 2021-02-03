@@ -48,7 +48,6 @@ useEffect(() => {
    
     
     for (let i = 0; i < markers.length; i++) {  
-        console.log(i)
         tempMarker = new google.maps.Marker({
           position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
           map: map,
@@ -70,16 +69,13 @@ useEffect(() => {
 
 const geocodeLocation = (searchTerm) => {
     let city;
-    console.log(searchTerm)
     geocoder.geocode({ address: searchTerm }, function(results, status) {
-        console.log(results,status)
         if (status === 'OK'){
             map.setCenter(results[0].geometry.location);
             map.fitBounds(results[0].geometry.viewport);
             let possibleCities = results[0].address_components
             
              for (let i =0;i<possibleCities.length;i++){
-                 console.log(possibleCities)
                 if(possibleCities[i].types[0] == "locality" || possibleCities[i].types[0] == "postal_town") {
                     
                     city = possibleCities[i].long_name 
@@ -87,8 +83,6 @@ const geocodeLocation = (searchTerm) => {
                     break;
                 }
             }
-            console.log(city)
-            
         }
     })
 }

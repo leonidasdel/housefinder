@@ -8,9 +8,6 @@ class AuthenticationService {
         sessionStorage.setItem("firstName",firstName)
         sessionStorage.setItem("lastName",lastName)
         sessionStorage.setItem("token",this.createJWTToken(token))
-        // console.log(sessionStorage.getItem("authenticatedUser"))
-        // console.log("ji")
-        // this.setupAxiosInterceptors(this.createJWTToken(token))
     }
     createJWTToken(token) {
         return 'Bearer ' + token
@@ -20,7 +17,6 @@ class AuthenticationService {
 
         axios.interceptors.request.use(
             (config) => {
-                console.log("interceptorrr")
                 if (this.isUserLoggedIn()) {
                     config.headers.authorization = token
                 }

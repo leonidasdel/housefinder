@@ -92,7 +92,7 @@ function PropertiesList(props) {
         if (city != '') {
             axios.get(`${BASE_URL}/houses/${city}`)
                 .then(res => {
-                    console.log(res)
+                    
                     dispatch(action.changePropertiesText(res.data))
                 })
                 .catch(err => console.log(err))
@@ -146,7 +146,6 @@ function PropertiesList(props) {
                 <section className="properties-container_houses">
                     {properties.map(el => (
                         <div className="properties-container_houses_box">
-                            {console.log(`url(https://house.fra1.digitaloceanspaces.com/files/${el.houses_path != null ? el.houses_path.pathLocation : "30875dfa-338a-49fd-b498-b5c83900e6d5.jpg"}`)}
                             <div className="properties-container_houses_box_img" style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(https://house.fra1.digitaloceanspaces.com/files/${el.houses_path != null ? el.houses_path.pathLocation : "30875dfa-338a-49fd-b498-b5c83900e6d5.jpg"})` }} ></div>
                             <div className="properties-container_houses_box_description">
                                 <div className="properties-container_houses_box_description_first">

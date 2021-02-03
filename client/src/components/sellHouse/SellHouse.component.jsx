@@ -38,11 +38,8 @@ function SellHouse(props){
         if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
             document.getElementById("helper-notify").style.display ="none"
             document.querySelector('.file-name').textContent = fileName;
-            console.log(e.target.files[0])
             formData = new FormData();
             formData.append('file',e.target.files[0])
-            console.log(formData)
-
         }else{
             alert("Only jpg/jpeg and png files are allowed!");
         } 
@@ -51,9 +48,7 @@ function SellHouse(props){
 };
 
     const handleSubmit = (e) => {
-        console.log(e)
         e.preventDefault();
-       
         let objData = {
             "firstName": e.target[0].value,
             "lastName": e.target[1].value,
@@ -72,9 +67,6 @@ function SellHouse(props){
             "lng": lng
         }
         formData.append('objArr', JSON.stringify( objData))
-        for (var key of formData.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
        
         request({
             method: 'post',
@@ -84,7 +76,6 @@ function SellHouse(props){
             })
             .then(function (response) {
                 //handle success
-                console.log(response);
                 lat =null
                 lng= null
             })
@@ -101,10 +92,8 @@ function SellHouse(props){
         geocoder.geocode({ address: e.target.value }, function(results, status) {
             if(results[0] != null){
             let possibleAddresses = results[0].address_components
-            console.log(results[0].geometry.location.lat)
              lat = results[0].geometry.location.lat();
              lng = results[0].geometry.location.lng();
-            console.log(possibleAddresses)
             for (let i =0;i<possibleAddresses.length;i++){
                 if(possibleAddresses[i].types[0] === "postal_town"){
                     document.getElementById("city").value = possibleAddresses[i].long_name
