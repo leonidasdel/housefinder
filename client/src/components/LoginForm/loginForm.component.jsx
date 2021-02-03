@@ -63,7 +63,6 @@ function LoginForm(props){
         let tempFirstName = document.getElementById("first_name").value
         let tempLastName = document.getElementById("last_name").value
         const jsonBody = JSON.stringify({ email: tempEmail,password:tempPassword, firstName: tempFirstName,lastName: tempLastName });
-        console.log(json)
         return axios.post(`${BASE_URL}/users`, jsonBody,{headers:{
            
             "Content-Type": "application/json"}
