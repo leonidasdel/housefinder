@@ -189,8 +189,8 @@ function SellHouse(props){
                     </div>
                 </div>
                 
-                <div class="file-input">
-                    <input type="file" id="file" class="file" accept="image/x-png,image/jpg,image/jpeg"  onChange={(e) =>changeFile(e)}/>
+                <div className="file-input">
+                    <input type="file" id="file" className="file" accept="image/x-png,image/jpg,image/jpeg"  onChange={(e) =>changeFile(e)}/>
                     <label for="file">
                         Select file
                         <p className="file-name"></p>
