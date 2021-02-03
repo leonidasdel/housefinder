@@ -22,7 +22,12 @@ function PropertiesList(props) {
     let tempcity = city
 
     const filterData = (e) => {
-        propertiesBackup = JSON.parse(JSON.stringify(properties));
+        if(propertiesBackup === undefined || propertiesBackup.length == 0){
+            console.log("hello world")
+            propertiesBackup = JSON.parse(JSON.stringify(properties));
+        }
+        
+        console.log(propertiesBackup)
         let minPrice = parseInt(document.getElementById("price_min").value) || 0;
         let maxPrice = parseInt(document.getElementById("price_max").value) || 2500
         let bedrooms = document.getElementsByClassName("properties-container_filter_house_options_li")[0].textContent
@@ -30,7 +35,7 @@ function PropertiesList(props) {
         let bathrooms = document.getElementsByClassName("properties-container_filter_house_options_li_2")[0].textContent
         bathrooms = parseInt(bathrooms[0]) || 0
         let sortingMethod = document.getElementsByClassName("properties-container_filter_house_options_li_3")[0].textContent
-        let testProperties = properties.filter(el => el.price >= minPrice && el.price <= maxPrice && Number(el.bathrooms) >= bathrooms && Number(el.bedrooms) >= bedrooms)
+        let testProperties = propertiesBackup.filter(el => el.price >= minPrice && el.price <= maxPrice && Number(el.bathrooms) >= bathrooms && Number(el.bedrooms) >= bedrooms)
         if (sortingMethod === "Price low -> high") {
             testProperties = testProperties.sort((a, b) => a.price - b.price);
         }
@@ -89,6 +94,7 @@ function PropertiesList(props) {
     }, [])
 
     useEffect(() => {
+
         if (city != '') {
             axios.get(`${BASE_URL}/houses/${city}`)
                 .then(res => {
@@ -97,6 +103,7 @@ function PropertiesList(props) {
                 })
                 .catch(err => console.log(err))
         }
+        propertiesBackup = []
     }, [city])
     return (
         (
