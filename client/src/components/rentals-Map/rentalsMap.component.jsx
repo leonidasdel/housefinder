@@ -42,30 +42,22 @@ function RentalsMap(props) {
 
 
 useEffect(() => {
-
-
+    for(let i =0; i<marker.length;i++){
+        marker[i].setMap(null);
+    }
     marker = [];
-   
-    
     for (let i = 0; i < markers.length; i++) {  
         tempMarker = new google.maps.Marker({
           position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
           map: map,
           icon: icon
         })
-            
-           
-         
             marker.push(tempMarker)
             google.maps.event.addListener(marker[i], 'click', function () {
                 infowindow.setContent(markers[i].streetAddress)
                 infowindow.open(map, marker[i]);
-            });
-        
-            
-        
-
-}},[markers])
+            });}
+},[markers])
 
 const geocodeLocation = (searchTerm) => {
     let city;
