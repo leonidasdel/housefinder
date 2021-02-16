@@ -157,6 +157,7 @@ function PropertiesList(props) {
                             <div className="properties-container_houses_box_description">
                                 <div className="properties-container_houses_box_description_first">
                                     <h3 className="properties-container_houses_box_description_first_text"> {el.streetAddress}, {el.city}</h3>
+                                    <h3 className="properties-container_houses_box_description_first_text"> {el.squareMeters} sqm</h3>
                                 </div>
                                 <div className="properties-container_houses_box_description_second">
                                     <h3 className="properties-container_houses_box_description_second_text"> {el.bedrooms} BD </h3>

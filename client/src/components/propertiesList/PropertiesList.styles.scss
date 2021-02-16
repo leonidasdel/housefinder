@@ -206,10 +206,25 @@
                 flex-direction: column;
                 justify-content: center;
                 box-shadow: -8px 8px 22px -9px rgba(0,0,0,0.67);
-                &_first_text{
+                &_first{
+                    display: flex;
+                &_text{
                     font-size: 16px;
                     font-weight: 400;
+                    
                 }
+                &_text:not(:first-child){
+                    margin-left: 5px ;
+                }
+                &_text:nth-child(3){
+                    margin-left: auto;
+                    margin-right: 7px;
+                }
+                &_text:nth-child(2){
+                    margin-left: auto;
+                    margin-right: 7px;
+                }
+            }
                 &_second{
                     display: flex;
                     &_text{
