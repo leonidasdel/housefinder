@@ -163,15 +163,15 @@ function LoginForm(props){
                    </div>
                 </div>
                 <div id="mprosta" className="Signupalert">
-                    <h4 className="SignupHeader">Δες είστε εγεγγραμένος χρήστης?</h4>
-                    <h5  className="SignupSub">Εγγραφείτε τώρα!</h5>
+                    <h4 className="SignupHeader">Not registered yet?</h4>
+                    <h5  className="SignupSub">Sign up now!</h5>
                     <div className="login-button-div">
                        <button onClick={()=> movelement()} id="signupalert"  className="signup-button mrg-bg">Sign up</button>
                     </div>
                 </div>
                 <div id="signinalert" className="Signinalert">
-                <h4 className="SignupHeader">Έχετε ήδη εγγραφει;</h4>
-                    <h5  className="SignupSub">Συνδεθείτε τώρα!</h5>
+                <h4 className="SignupHeader">Already have an account?</h4>
+                    <h5  className="SignupSub">Sign in now!</h5>
                     <div className="login-button-div">
                        <button onClick={()=>movelementtwo(  )}   className="signup-button mrg-bg">Sign in</button>
                     </div>

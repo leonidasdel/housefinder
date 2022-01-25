@@ -44,3 +44,7 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 /client/.vs
+/server/src/main/resources
+*.properties
+*.properties
+

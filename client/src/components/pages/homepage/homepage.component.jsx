@@ -40,8 +40,8 @@ const dispatch = useDispatch()
                     </h1>
                     <form onSubmit={(e) => handleSubmit(e)} action="" className="mainPage_search_bar">
                         <input type="search" id="address_input" placeholder="Manchester, Blackpool, Liverpool..." defaultValue="London" className="mainPage_search_bar_input" />
-                        <button type="submit" className="btn btn-success">
-                            <i type="submit" className="fas fa-search"></i>
+                        <button type="submit" className="btn btn-success" >
+                            <i type="submit" className="fas fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
                 </section>
