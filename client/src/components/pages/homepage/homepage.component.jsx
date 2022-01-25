@@ -14,6 +14,7 @@ var options = {
 function HomePage(props)  {
 
     const [flagWrongSearch,setFlagWrongSearch] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
  
     // redux actions
     const searchTerm  =  useSelector(state => state.searchReducer)
@@ -29,10 +30,14 @@ function HomePage(props)  {
       });
 
       const handleSubmit = (e) => {
+            setIsLoading(true)
             e.preventDefault()
             let address = document.getElementById('address_input').value
             dispatch(action.changeSearchText(address))
-            props.history.push('/houses');
+            setTimeout(() => {
+                props.history.push('/houses');
+            }, 900)
+            
         }
 
 
@@ -52,7 +57,7 @@ function HomePage(props)  {
                     <form onSubmit={(e) => handleSubmit(e)} action="" className="mainPage_search_bar">
                         <input type="search" id="address_input" placeholder="Manchester, Blackpool, Liverpool..." defaultValue="London" className="mainPage_search_bar_input" />
                         <button type="submit" className="btn btn-success" >
-                            <i type="submit" className="fas fa-search" aria-hidden="true"></i>
+                            {isLoading ? <i class="fas fa-spinner fa-spin" aria-hidden="true"></i> : <i type="submit" className="fas fa-search" aria-hidden="true"></i>}
                         </button>
                     </form>
                 </section>

@@ -54,7 +54,7 @@
 }
 
 // font awesome
-.fa-search{
+.fa-search, .fa-spinner{
     color: rgba(31, 29, 29, 0.829);
     font-size: 18px;
     z-index: 3;
@@ -63,6 +63,9 @@
     right: 3%;
     transform: translate(-3%,-50%);
     cursor: pointer;
+}
+.fa-spinner {
+    margin-top: -10px
 }
 
 .btn{
