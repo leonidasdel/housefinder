@@ -47,3 +47,4 @@ secrets.yml
 /server/src/main/resources
 *.properties
 *.properties
+
