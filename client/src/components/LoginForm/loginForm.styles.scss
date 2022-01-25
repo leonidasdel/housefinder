@@ -402,11 +402,10 @@ button:focus{
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    transition: 1s;
-    // position: absolute;
-    // top: 0;
-    // left: 50%;
-    // transform: translate(-50%,0);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0);
     width: 100%;
     & span {
         font-size: 25px;
