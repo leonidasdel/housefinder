@@ -58,14 +58,12 @@ useEffect(() => {
         })
             
         marker.push(tempMarker)
-
-        // google.maps.event.addListener(marker[i], 'click', function () {
-        //     infowindow.setContent(`${markers[i].streetAddress} <br/> ${markers[i].bedrooms} BD ${markers[i].bathrooms} WC ${markers[i].price}€` )
-        //     infowindow.open(map, marker[i]);
+ infowindow.open(map, marker[i]);
         // });
         google.maps.event.addListener(marker[i], 'mouseover', () => {
             document.getElementById(markerId).style.transform = 'translateY(-0.1em) scale(1.03)'
             document.getElementById(markerId).style.boxShadow = '0 0.8em 4em rgba(0, 0, 0, 0.199)'
+            document.getElementById(markerId).scrollIntoView()
             infowindow.setContent(`${markers[i].streetAddress} <br/> ${markers[i].bedrooms} BD ${markers[i].bathrooms} WC ${markers[i].price}€` )
             infowindow.open(map, marker[i]);
         })
