@@ -46,18 +46,39 @@ useEffect(() => {
         marker[i].setMap(null);
     }
     marker = [];
-    for (let i = 0; i < markers.length; i++) {  
+   
+    
+    for (let i = 0; i < markers.length; i++) {
+        let markerId = markers[i].houses_path.pathLocation.split('.')[0]
+        
         tempMarker = new google.maps.Marker({
           position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
           map: map,
           icon: icon
         })
-            marker.push(tempMarker)
-            google.maps.event.addListener(marker[i], 'click', function () {
-                infowindow.setContent(markers[i].streetAddress)
-                infowindow.open(map, marker[i]);
-            });}
-},[markers])
+            
+        marker.push(tempMarker)
+
+        // google.maps.event.addListener(marker[i], 'click', function () {
+        //     infowindow.setContent(`${markers[i].streetAddress} <br/> ${markers[i].bedrooms} BD ${markers[i].bathrooms} WC ${markers[i].price}€` )
+        //     infowindow.open(map, marker[i]);
+        // });
+        google.maps.event.addListener(marker[i], 'mouseover', () => {
+            document.getElementById(markerId).style.transform = 'translateY(-0.1em) scale(1.03)'
+            document.getElementById(markerId).style.boxShadow = '0 0.8em 4em rgba(0, 0, 0, 0.199)'
+            infowindow.setContent(`${markers[i].streetAddress} <br/> ${markers[i].bedrooms} BD ${markers[i].bathrooms} WC ${markers[i].price}€` )
+            infowindow.open(map, marker[i]);
+        })
+        google.maps.event.addListener(marker[i], 'mouseout', () => {
+            document.getElementById(markerId).style.transform = '' // removes the styling of mouseover for transform
+            document.getElementById(markerId).style.boxShadow = '' // removes the styling of mouseover for box shadow
+            infowindow.close(map,marker[i])
+        })
+        
+            
+        
+
+}},[markers])
 
 const geocodeLocation = (searchTerm) => {
     let city;

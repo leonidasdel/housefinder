@@ -192,8 +192,8 @@
             transition-duration: 0.3s;
             &:hover{
                 transform: translateY(-0.1em) scale(1.03);
-    box-shadow: 0 0.8em 4em rgba(0, 0, 0, 0.199);
-    cursor: pointer; 
+                box-shadow: 0 0.8em 4em rgba(0, 0, 0, 0.199);
+                cursor: pointer; 
             }
             &_img{
                 width: 100%;
