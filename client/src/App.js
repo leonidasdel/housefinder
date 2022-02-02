@@ -29,7 +29,7 @@ constructor(props){
     <Header />
     <Switch>
         <Route exact path='/' props={this.props} component={HomePage} />
-        <Route exact path="/houses" props={this.props} component={Properties}/>
+        <AuthenticatedRoute exact path="/houses" props={this.props} component={Properties}/>
         <Route exact path="/login-register" history={this.props.history} props={this.props} component={Login}/>
         <AuthenticatedRoute  exact path="/sell-house" props={this.props} component={houseSubmit}/>
     </Switch>
