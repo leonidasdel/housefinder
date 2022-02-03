@@ -94,13 +94,13 @@ function LoginForm(props){
                        <form onSubmit={(e) => login(e)} className="col s12">
                        <div className="flexible-thing">
                        <div className="input-field marginclass col s12">
-                           <input id="email" type="text" className="input-field_text" placeholder="Email"/>
+                           <input value="root@root.com" id="email" type="text" className="input-field_text" placeholder="Email"/>
                            <label className="input-field_label" htmlFor="email" >Email</label>
                        </div> 
                        </div>
                        <div className=" flexible-thing">
                            <div className="input-field marginclass col s12">
-                               <input id="password" type="password" className="input-field_text" placeholder="Password"/>
+                               <input value="0000" id="password" type="password" className="input-field_text" placeholder="Password"/>
                                <label className="input-field_label" htmlFor="password">Password</label>
                            </div>
                        </div>
