@@ -55,7 +55,7 @@ function HomePage(props)  {
                        Search for Apartments<span className="mainPage_search_title_span">With just one click!</span>
                     </h1>
                     <form onSubmit={(e) => handleSubmit(e)} action="" className="mainPage_search_bar">
-                        <input type="search" id="address_input" placeholder="Manchester, Blackpool, Liverpool..." defaultValue="London" className="mainPage_search_bar_input" />
+                        <input id="address_input" placeholder="Manchester, Blackpool, Liverpool..." defaultValue="London" className="mainPage_search_bar_input" />
                         <button type="submit" className="btn btn-success" >
                             {isLoading ? <i class="fas fa-spinner fa-spin" aria-hidden="true"></i> : <i type="submit" className="fas fa-search" aria-hidden="true"></i>}
                         </button>
