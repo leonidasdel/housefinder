@@ -7,6 +7,18 @@ label{
     background-color: #e7e7e7;
     z-index:502;
     position: relative;
+    &_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        top:60px;
+        &_text {
+            font-size: 3.3em;
+            text-align: center;
+        }
+    }
     &_form{
         width: 800px;
         height: 500px;
