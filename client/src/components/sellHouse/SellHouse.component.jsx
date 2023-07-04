@@ -70,7 +70,7 @@ function SellHouse(props){
        
         request({
             method: 'post',
-            url: `${BASE_URL}/put-house`,
+            url: `${process.env.REACT_APP_BASE_URL}/put-house`,
             data: formData,
             headers: {'Content-Type': 'multipart/form-data'}
             })
