@@ -18,13 +18,10 @@ class Header extends Component {
                 <nav>
                 <ul className="header_container_list">
                     <li className="header_container_list_item">
-                        <Link to="/houses" className="header_container_list_item_text">Rent</Link>
+                        <Link to="/houses" className="header_container_list_item_text">Find rentals</Link>
                     </li>
                     <li className="header_container_list_item">
-                        <Link to="/houses" className="header_container_list_item_text">Buy</Link>
-                    </li>
-                    <li className="header_container_list_item">
-                        <Link to="/sell-house" className="header_container_list_item_text">Rent your house</Link>
+                        <Link to="/sell-house" className="header_container_list_item_text">List your property</Link>
                     </li>
                     {!isUserLoggedIn && <li className="header_container_list_item">
                         <Link to="/login-register" className="header_container_list_item_text">Login</Link>
@@ -41,10 +38,8 @@ class Header extends Component {
 
                 </ul>
                 </nav>
-                <Link className="header_image" to="/"><img src={header_logo} alt="header-logo" className="header_image_icon"/></Link>
+                    <Link className="header_image" to="/"><img src={header_logo} alt="header-logo" className="header_image_icon"/></Link>
                 </div>
-      
-
                 <Hamburger />
             </header>
         )

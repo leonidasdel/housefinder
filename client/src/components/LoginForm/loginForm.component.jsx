@@ -83,6 +83,9 @@ function LoginForm(props){
                     setTimeout(() => {  document.getElementsByClassName("alert")[0].style.display = "none"; },600)
                  } } >&times;</span>
             </div>   }
+            <section className="container_page_title">
+                <h1 className="container_page_title_text">User login-register</h1>
+            </section>
         <section className="container_page_form">
             <div id="clicky" className="container_page_form_moving-element"></div>
             <div className="container_page_form_login-signup">

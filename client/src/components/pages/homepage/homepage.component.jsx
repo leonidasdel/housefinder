@@ -44,7 +44,7 @@ function HomePage(props)  {
         return(
             <main className="mainPage">
                  { flagWrongSearch && <div className="alert">               
-                <h5 className="alert_text">You need to search a property to see all the listings there!</h5>
+                <h5 className="alert_text">You need to search a location to see all the listings there!</h5>
                 <span className="closebtn" onClick={(e) => {
                     document.getElementsByClassName("alert")[0].style.opacity ='0'
                     setTimeout(() => {  document.getElementsByClassName("alert")[0].style.display = "none"; },600)

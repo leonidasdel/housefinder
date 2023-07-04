@@ -7,6 +7,18 @@ label{
     background-color: #e7e7e7;
     z-index:502;
     position: relative;
+    &_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        top:60px;
+        &_text {
+            font-size: 3.3em;
+            text-align: center;
+        }
+    }
     &_form{
         width: 800px;
         height: 500px;
@@ -23,7 +35,7 @@ label{
         &_moving-element{
             width: 50%;
             height: 100%;
-            background-color:#ad33d6;
+            background-color:#006aff;
             z-index:500;
             position: absolute;
             left:50%
@@ -70,7 +82,7 @@ label{
     z-index:3
 }
 .login-button{
-    background-color: #ad33d6;
+    background-color: #006aff;
     border: none;
     padding: 9px 55px;
     border-radius: 15px;
@@ -82,7 +94,7 @@ label{
     margin-top: 25px;
 }
 .validate:focus{
-    border-bottom: 1px solid #ad33d6 !important;
+    border-bottom: 1px solid #006aff !important;
 }
 .active{
     color: black !important;
@@ -91,7 +103,7 @@ label{
     background-color: #ad33d6;
 } */
 .login-button:focus{
-    background-color: #ad33d6; 
+    background-color: #006aff; 
 }
 .login-button-div{
     display: flex;
@@ -170,7 +182,7 @@ label{
     
 }
 .signup-button{
-    background-color: #ad33d6;
+    background-color: #006aff;
     border: 2px solid white;
     color: #fff;
     font-size: 25px;
@@ -194,7 +206,7 @@ label{
     margin-top: 20px;
 }
 button:focus{
-    background-color: #ad33d6;
+    background-color: #006aff;
 }
 
 .helper-text{

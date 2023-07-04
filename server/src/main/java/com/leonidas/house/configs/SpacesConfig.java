@@ -1,5 +1,6 @@
 package com.leonidas.house.configs;
 
+import com.amazonaws.regions.Regions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,14 @@ public class SpacesConfig {
     @Bean
     public AmazonS3 getCredentials() {
         BasicAWSCredentials creds = new BasicAWSCredentials(doSpaceKey, doSpaceSecret);
-        return AmazonS3ClientBuilder.standard()
-                .withEndpointConfiguration(new EndpointConfiguration(doSpaceEndpoint, doSpaceRegion))
-                .withCredentials(new AWSStaticCredentialsProvider(creds)).build();
+        return AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(creds))
+                .withRegion(Regions.EU_CENTRAL_1)
+                .build();
+//        return AmazonS3ClientBuilder.standard()
+//                .withEndpointConfiguration(new EndpointConfiguration(doSpaceEndpoint, doSpaceRegion))
+//                .withCredentials(new AWSStaticCredentialsProvider(creds)).build();
     }
 
 }
