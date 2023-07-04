@@ -153,7 +153,7 @@ function PropertiesList(props) {
                 <section className="properties-container_houses">
                     {properties.map(el => (
                         <div id={el.houses_path.pathLocation.split(".")[0]} className="properties-container_houses_box">
-                            <div className="properties-container_houses_box_img" style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(https://house-finder.fra1.digitaloceanspaces.com/files/${el.houses_path != null ? el.houses_path.pathLocation : "30875dfa-338a-49fd-b498-b5c83900e6d5.jpg"})` }} ></div>
+                            <div className="properties-container_houses_box_img" style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url(${process.env.REACT_APP_STORAGE_BASE_PATH}${el.houses_path.pathLocation})` }} ></div>
                             <div className="properties-container_houses_box_description">
                                 <div className="properties-container_houses_box_description_first">
                                     <h3 className="properties-container_houses_box_description_first_text"> {el.streetAddress}, {el.city}</h3>

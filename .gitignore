@@ -48,4 +48,5 @@ secrets.yml
 *.properties
 *.properties
 /client/build
+.env
 
