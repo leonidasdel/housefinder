@@ -96,7 +96,7 @@ function PropertiesList(props) {
     useEffect(() => {
 
         if (city != '') {
-            axios.get(`${BASE_URL}/houses/${city}`)
+            axios.get(`${process.env.REACT_APP_BASE_URL}/houses/${city}`)
                 .then(res => {
                     
                     dispatch(action.changePropertiesText(res.data))

@@ -40,7 +40,7 @@ function LoginForm(props){
         let tempEmail = document.getElementById("email").value
         let tempPassword = document.getElementById("password").value
         const jsonBody = JSON.stringify({ email: tempEmail,password:tempPassword });
-        return axios.post(`${BASE_URL}/users/login`,  jsonBody,{headers:{
+        return axios.post(`${process.env.REACT_APP_BASE_URL}/users/login`,  jsonBody,{headers:{
             "Content-Type": "application/json"
         }})
         .then(response => response)
@@ -63,7 +63,7 @@ function LoginForm(props){
         let tempFirstName = document.getElementById("first_name").value
         let tempLastName = document.getElementById("last_name").value
         const jsonBody = JSON.stringify({ email: tempEmail,password:tempPassword, firstName: tempFirstName,lastName: tempLastName });
-        return axios.post(`${BASE_URL}/users`, jsonBody,{headers:{
+        return axios.post(`${process.env.REACT_APP_BASE_URL}/users`, jsonBody,{headers:{
            
             "Content-Type": "application/json"}
         })
