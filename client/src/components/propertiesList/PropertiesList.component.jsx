@@ -13,6 +13,8 @@ function PropertiesList(props) {
     const bathrooms = useSelector(state => state.bathroomsReducer)
     const sortPrice = useSelector(state => state.sortReducer)
 
+    const [isLoading,setIsLoading] = useState(false)
+
     let initialBedrooms = ["All", "1+", "2+", "3+", "4+"]
     let initialBathrooms = ["All", "1+", "2+", "3+", "4+"]
     let initialSort = ["Default", "Price low -> high", "Price high -> low"]
@@ -96,9 +98,10 @@ function PropertiesList(props) {
     useEffect(() => {
 
         if (city != '') {
-            axios.get(`${BASE_URL}/houses/${city}`)
+            setIsLoading(true);
+            axios.get(`${process.env.REACT_APP_BASE_URL}/houses/${city}`)
                 .then(res => {
-                    
+                    setIsLoading(false)
                     dispatch(action.changePropertiesText(res.data))
                 })
                 .catch(err => console.log(err))
@@ -110,7 +113,7 @@ function PropertiesList(props) {
             <section className="properties-container">
                 <div className="properties-container_title">
                     <h3 className="properties-container_title_text">
-                        {city != "" && `Showing ${properties.length} properties in ${city}`}
+                        { (city != "" && !isLoading) ? `Showing ${properties.length} properties in ${city}` : 'Loading...'}
                     </h3>
                 </div>
                 <div className="properties-container_filter">
